@@ -1,0 +1,26 @@
+# Render Blueprint: one web service that builds the React app and runs the
+# Express API, which serves both the app and /api from the same URL.
+services:
+  - type: web
+    name: expensify
+    runtime: node
+    plan: free
+    # webpack 4 needs the legacy OpenSSL provider on Node 17+
+    buildCommand: >-
+      npx --yes yarn@1.22.22 install --frozen-lockfile &&
+      NODE_OPTIONS=--openssl-legacy-provider npx --yes yarn@1.22.22 build:prod &&
+      npm ci --prefix server
+    startCommand: node server/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      # Makes login cookies HTTPS-only
+      - key: NODE_ENV
+        value: production
+      # Render creates a random secret for signing login cookies
+      - key: JWT_SECRET
+        generateValue: true
+      # Set in the Render dashboard; sync: false keeps it out of this file
+      - key: MONGODB_URI
+        sync: false
