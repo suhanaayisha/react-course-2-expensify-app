@@ -5,47 +5,47 @@ import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { editExpense } from '../actions/expenses';
 
-export class EditExpensePage extends React.Component {
-   onSubmit=(expense) =>{
-      this.props.editExpense(this.props.expense.id, expense);
-      this.props.history.push('/');
-   }
-   onRemove = ()=>{
-      this.props.removeExpense({id: this.props.expense.id});
-      this.props.history.push('/');
-    }
-   render() {
-      // Expenses only live in memory, so this happens after a page refresh
-      if (!this.props.expense) {
-         return (
-            <div className="content-container">
-               <div className="message-box">
-                  <h2>Expense not found</h2>
-                  <p>It may have been removed, or the page was refreshed.</p>
-                  <Link className="button" to="/">Back to dashboard</Link>
-               </div>
-            </div>
-         );
-      }
+export const EditExpensePage = ({ expense, editExpense, removeExpense, history }) => {
+   // Expenses only live in memory, so this happens after a page refresh
+   if (!expense) {
       return (
-         <div>
-            <div className="page-header">
-               <div className="content-container">
-                  <h1 className="page-header__title">Edit Expense</h1>
-               </div>
-            </div>
-            <div className="content-container">
-               <ExpenseForm
-                 expense={this.props.expense}
-                 onSubmit={this.onSubmit}
-               />
-               <button className="button button--secondary" onClick={this.onRemove}>
-                  Remove Expense
-               </button>
+         <div className="content-container">
+            <div className="message-box">
+               <h2>Expense not found</h2>
+               <p>It may have been removed, or the page was refreshed.</p>
+               <Link className="button" to="/">Back to dashboard</Link>
             </div>
          </div>
-        );
+      );
    }
+
+   const onSubmit = (updates) => {
+      editExpense(expense.id, updates);
+      history.push('/');
+   };
+   const onRemove = () => {
+      removeExpense({ id: expense.id });
+      history.push('/');
+   };
+
+   return (
+      <div>
+         <div className="page-header">
+            <div className="content-container">
+               <h1 className="page-header__title">Edit Expense</h1>
+            </div>
+         </div>
+         <div className="content-container">
+            <ExpenseForm
+              expense={expense}
+              onSubmit={onSubmit}
+            />
+            <button className="button button--secondary" onClick={onRemove}>
+               Remove Expense
+            </button>
+         </div>
+      </div>
+   );
 };
 
 const mapStateToProps = (state, props) => ({

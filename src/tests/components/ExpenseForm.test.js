@@ -20,7 +20,7 @@ test('should render error for invalid form submission', () => {
     wrapper.find('form').simulate('submit', {
         preventDefault: () => { }
     });
-    expect(wrapper.state('error').length).toBeGreaterThan(0);
+    expect(wrapper.find('.form__error').text().length).toBeGreaterThan(0);
     expect(wrapper).toMatchSnapshot();
 });
 
@@ -30,7 +30,7 @@ test('should set description on input change', () => {
     wrapper.find('input').at(0).simulate('change', {
         target: { value }
     });
-    expect(wrapper.state('description')).toBe(value);
+    expect(wrapper.find('input').at(0).prop('value')).toBe(value);
 });
 
 test('should set amount on valid input', () => {
@@ -39,7 +39,7 @@ test('should set amount on valid input', () => {
     wrapper.find('input').at(1).simulate('change', {
         target: { value }
     });
-    expect(wrapper.state('amount')).toBe(value);
+    expect(wrapper.find('input').at(1).prop('value')).toBe(value);
 });
 
 test('should not set amount on invalid input', () => {
@@ -48,7 +48,7 @@ test('should not set amount on invalid input', () => {
     wrapper.find('input').at(1).simulate('change', {
         target: { value }
     });
-    expect(wrapper.state('amount')).toBe('');
+    expect(wrapper.find('input').at(1).prop('value')).toBe('');
 });
 
 test('should call onSubmit prop for valid form submission', () => {
@@ -58,7 +58,7 @@ test('should call onSubmit prop for valid form submission', () => {
     wrapper.find('form').simulate('submit', {
         preventDefault: () => { }
     });
-   expect(wrapper.state('error')).toBe('');
+   expect(wrapper.find('.form__error').length).toBe(0);
    expect(onSubmitSpy).toHaveBeenLastCalledWith({
        description: expenses[0].description,
        amount: expenses[0].amount,
@@ -71,12 +71,12 @@ test('should set new date on date change', () => {
     const now = moment();
     const wrapper = shallow(<ExpenseForm />);
     wrapper.find('SingleDatePicker').prop('onDateChange')(now);
-    expect(wrapper.state('createdAt')).toEqual(now);
+    expect(wrapper.find('SingleDatePicker').prop('date')).toEqual(now);
 });
 
 test('should set calender focus on change', () => {
     const focused = true;
     const wrapper = shallow(<ExpenseForm />);
     wrapper.find('SingleDatePicker').prop('onFocusChange')({focused});
-    expect(wrapper.state('calenderFocused')).toBe(focused);
+    expect(wrapper.find('SingleDatePicker').prop('focused')).toBe(focused);
 });
