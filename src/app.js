@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { startSetExpenses } from './actions/expenses';
+import { startRestoreSession, logout } from './actions/auth';
+import { setExpenses } from './actions/expenses';
+import { setUnauthorizedHandler } from './api/request';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
@@ -16,9 +18,15 @@ const jsx = (
 );
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(<p className="loader">Loading your expenses…</p>, appRoot);
+// If the session expires while the app is open, drop back to the login page
+setUnauthorizedHandler(() => {
+    store.dispatch(logout());
+    store.dispatch(setExpenses([]));
+});
 
-store.dispatch(startSetExpenses())
+ReactDOM.render(<p className="loader">Loading…</p>, appRoot);
+
+store.dispatch(startRestoreSession())
     .then(() => {
         ReactDOM.render(jsx, appRoot);
     })

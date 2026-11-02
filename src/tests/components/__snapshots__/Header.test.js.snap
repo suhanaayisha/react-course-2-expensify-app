@@ -47,6 +47,18 @@ exports[`should render Header correctly 1`] = `
         >
           Help
         </NavLink>
+        <span
+          className="header__user"
+          title="Signed in as"
+        >
+          suhana
+        </span>
+        <button
+          className="header__logout"
+          onClick={[Function]}
+        >
+          Log out
+        </button>
       </nav>
     </div>
   </div>

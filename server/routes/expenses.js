@@ -1,8 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Expense = require('../models/expense');
+const { requireAuth } = require('../auth/session');
 
 const router = express.Router();
+
+// Every expense route needs a signed-in user, and only sees that user's expenses
+router.use(requireAuth);
 
 const EDITABLE_FIELDS = ['description', 'note', 'amount', 'createdAt'];
 
@@ -22,10 +26,10 @@ router.param('id', (req, res, next, id) => {
     next();
 });
 
-// GET /api/expenses — list all expenses, newest first
+// GET /api/expenses — list the user's expenses, newest first
 router.get('/', async (req, res, next) => {
     try {
-        const expenses = await Expense.find().sort({ createdAt: -1 });
+        const expenses = await Expense.find({ owner: req.userId }).sort({ createdAt: -1 });
         res.json(expenses);
     } catch (e) {
         next(e);
@@ -35,7 +39,7 @@ router.get('/', async (req, res, next) => {
 // POST /api/expenses — add an expense
 router.post('/', async (req, res, next) => {
     try {
-        const expense = await Expense.create(pickEditable(req.body));
+        const expense = await Expense.create({ ...pickEditable(req.body), owner: req.userId });
         res.status(201).json(expense);
     } catch (e) {
         next(e);
@@ -45,8 +49,8 @@ router.post('/', async (req, res, next) => {
 // PATCH /api/expenses/:id — update some fields of an expense
 router.patch('/:id', async (req, res, next) => {
     try {
-        const expense = await Expense.findByIdAndUpdate(
-            req.params.id,
+        const expense = await Expense.findOneAndUpdate(
+            { _id: req.params.id, owner: req.userId },
             pickEditable(req.body),
             { new: true, runValidators: true }
         );
@@ -62,7 +66,7 @@ router.patch('/:id', async (req, res, next) => {
 // DELETE /api/expenses/:id — remove an expense
 router.delete('/:id', async (req, res, next) => {
     try {
-        const expense = await Expense.findByIdAndDelete(req.params.id);
+        const expense = await Expense.findOneAndDelete({ _id: req.params.id, owner: req.userId });
         if (!expense) {
             return res.status(404).json({ error: 'Expense not found' });
         }

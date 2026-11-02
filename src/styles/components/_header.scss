@@ -39,3 +39,29 @@
         color: white;
     }
 }
+
+.header__nav {
+    align-items: center;
+}
+
+.header__user {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.4rem;
+    margin-left: $s-size;
+    padding-left: $m-size;
+}
+
+.header__logout {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: $radius;
+    color: white;
+    font-size: 1.4rem;
+    margin-left: $s-size;
+    padding: 0.5rem $s-size;
+    transition: background 0.15s;
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}

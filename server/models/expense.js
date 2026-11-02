@@ -3,6 +3,13 @@ const mongoose = require('mongoose');
 // Mirrors the expense shape used by the React app:
 // amount is in cents, createdAt is a millisecond timestamp chosen by the user
 const expenseSchema = new mongoose.Schema({
+    // The user this expense belongs to; every query filters on it
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
+    },
     description: {
         type: String,
         required: true,
@@ -34,6 +41,7 @@ expenseSchema.set('toJSON', {
     versionKey: false,
     transform: (doc, ret) => {
         delete ret._id;
+        delete ret.owner;
         return ret;
     }
 });

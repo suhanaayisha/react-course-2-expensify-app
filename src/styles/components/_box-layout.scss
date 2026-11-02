@@ -1,0 +1,49 @@
+// Centered card used by the login and sign-up pages
+.box-layout {
+    align-items: center;
+    background: linear-gradient(160deg, $dark-blue 0%, darken($blue, 10%) 100%);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: $m-size;
+}
+
+.box-layout__box {
+    background: white;
+    border-radius: $radius * 2;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    max-width: 40rem;
+    padding: $l-size;
+    width: 100%;
+}
+
+.box-layout__brand {
+    color: $dark-blue;
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+}
+
+.box-layout__tagline {
+    color: $grey;
+    margin: 0 0 $l-size;
+    text-align: center;
+}
+
+.box-layout__title {
+    font-size: 2rem;
+    margin: 0 0 $m-size;
+}
+
+.box-layout__switch {
+    color: $grey;
+    font-size: 1.4rem;
+    margin: $m-size 0 0;
+    text-align: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: $m-size;
+}

@@ -11,7 +11,8 @@
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "babel-cli": "6.24.1",

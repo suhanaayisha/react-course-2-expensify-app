@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render login page correctly 1`] = `
+<div
+  className="box-layout"
+>
+  <div
+    className="box-layout__box"
+  >
+    <h1
+      className="box-layout__brand"
+    >
+      Expensify
+    </h1>
+    <p
+      className="box-layout__tagline"
+    >
+      Keep your spending in check.
+    </p>
+    <h2
+      className="box-layout__title"
+    >
+      Log in
+    </h2>
+    <form
+      className="auth-form"
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <label
+        className="form__field"
+      >
+        <span
+          className="form__label"
+        >
+          User ID
+        </span>
+        <input
+          autoCapitalize="none"
+          autoComplete="username"
+          autoFocus={true}
+          className="text-input"
+          name="username"
+          onChange={[Function]}
+          spellCheck={false}
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        className="form__field"
+      >
+        <span
+          className="form__label"
+        >
+          Password
+        </span>
+        <input
+          autoComplete="current-password"
+          className="text-input"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        className="button button--full"
+        disabled={false}
+      >
+        Log in
+      </button>
+    </form>
+    <p
+      className="box-layout__switch"
+    >
+      Don't have an account?
+       
+      <Link
+        replace={false}
+        to={
+          Object {
+            "pathname": "/signup",
+            "state": undefined,
+          }
+        }
+      >
+        Sign up
+      </Link>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`should render sign up page correctly 1`] = `
+<div
+  className="box-layout"
+>
+  <div
+    className="box-layout__box"
+  >
+    <h1
+      className="box-layout__brand"
+    >
+      Expensify
+    </h1>
+    <p
+      className="box-layout__tagline"
+    >
+      Keep your spending in check.
+    </p>
+    <h2
+      className="box-layout__title"
+    >
+      Create your account
+    </h2>
+    <form
+      className="auth-form"
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <label
+        className="form__field"
+      >
+        <span
+          className="form__label"
+        >
+          User ID
+        </span>
+        <input
+          autoCapitalize="none"
+          autoComplete="username"
+          autoFocus={true}
+          className="text-input"
+          name="username"
+          onChange={[Function]}
+          spellCheck={false}
+          type="text"
+          value=""
+        />
+        <span
+          className="form__hint"
+        >
+          3–30 characters: letters, numbers, dots, dashes or underscores
+        </span>
+      </label>
+      <label
+        className="form__field"
+      >
+        <span
+          className="form__label"
+        >
+          Password
+        </span>
+        <input
+          autoComplete="new-password"
+          className="text-input"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+        <span
+          className="form__hint"
+        >
+          At least 
+          8
+           characters
+        </span>
+      </label>
+      <label
+        className="form__field"
+      >
+        <span
+          className="form__label"
+        >
+          Confirm password
+        </span>
+        <input
+          autoComplete="new-password"
+          className="text-input"
+          name="confirmPassword"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        className="button button--full"
+        disabled={false}
+      >
+        Sign up
+      </button>
+    </form>
+    <p
+      className="box-layout__switch"
+    >
+      Already have an account?
+       
+      <Link
+        replace={false}
+        to={
+          Object {
+            "pathname": "/login",
+            "state": undefined,
+          }
+        }
+      >
+        Log in
+      </Link>
+    </p>
+  </div>
+</div>
+`;

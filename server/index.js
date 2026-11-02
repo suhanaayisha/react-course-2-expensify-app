@@ -4,10 +4,14 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 const mongoose = require('mongoose');
 const app = require('./app');
 
-const { MONGODB_URI, PORT = 3000 } = process.env;
+const { MONGODB_URI, JWT_SECRET, PORT = 3000 } = process.env;
 
 if (!MONGODB_URI) {
     console.error('MONGODB_URI is not set. Copy server/.env.example to server/.env and add your Atlas connection string.');
+    process.exit(1);
+}
+if (!JWT_SECRET || JWT_SECRET.length < 32) {
+    console.error('JWT_SECRET must be set to a random string of at least 32 characters (see server/.env.example).');
     process.exit(1);
 }
 
