@@ -1,0 +1,22 @@
+.page-header {
+    background: $light-blue;
+    border-bottom: 1px solid $border;
+    margin-bottom: $l-size;
+    padding: $l-size 0;
+    .content-container {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: $m-size;
+        justify-content: space-between;
+    }
+}
+
+.page-header__title {
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin: 0;
+    span {
+        font-weight: 700;
+    }
+}

@@ -1,0 +1,41 @@
+.header {
+    background: $dark-blue;
+}
+
+.header__content {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: $s-size 0;
+}
+
+.header__title {
+    color: white;
+    text-decoration: none;
+    h1 {
+        font-size: 2.4rem;
+        margin: 0;
+    }
+}
+
+.header__nav {
+    display: flex;
+}
+
+.header__link {
+    border-radius: $radius;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.5rem;
+    padding: 0.6rem $s-size;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    &.is-active {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+    }
+}

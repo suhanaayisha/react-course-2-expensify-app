@@ -1,0 +1,75 @@
+%control {
+    background: white;
+    border: 1px solid $border;
+    border-radius: $radius;
+    color: $dark-grey;
+    font-family: inherit;
+    font-size: $m-size;
+    height: 5rem;
+    padding: 0 $s-size;
+    width: 100%;
+    &:focus {
+        border-color: $blue;
+        box-shadow: 0 0 0 3px rgba($blue, 0.15);
+        outline: none;
+    }
+}
+
+.text-input {
+    @extend %control;
+}
+
+.select {
+    @extend %control;
+    cursor: pointer;
+}
+
+.textarea {
+    @extend %control;
+    height: 10rem;
+    padding: $s-size;
+    resize: vertical;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: $s-size;
+    margin-bottom: $m-size;
+    @media (min-width: $desktop-breakpoint) {
+        align-items: center;
+        flex-direction: row;
+    }
+}
+
+.input-group__item--grow {
+    flex-grow: 1;
+}
+
+// react-dates: match the height and border of the other inputs
+.DateRangePickerInput,
+.SingleDatePickerInput {
+    border: 1px solid $border;
+    border-radius: $radius;
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    overflow: hidden;
+}
+
+.DateInput {
+    font-size: $m-size;
+    font-weight: 400;
+    padding: 0 0.4rem;
+    width: 12rem;
+}
+
+.DateInput__display-text--focused {
+    background: $light-blue;
+    border-color: $light-blue;
+    color: $blue;
+}
+
+.DateRangePickerInput__clear-dates {
+    margin: 0 0.4rem 0 0;
+}

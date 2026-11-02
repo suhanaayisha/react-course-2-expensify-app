@@ -40,3 +40,9 @@ test('should handle remove expense', () => {
 }
 );
 
+
+test('should render not found message when expense is missing', () => {
+    wrapper.setProps({ expense: undefined });
+    expect(wrapper.find('ExpenseForm').length).toBe(0);
+    expect(wrapper.find('.message-box').length).toBe(1);
+});

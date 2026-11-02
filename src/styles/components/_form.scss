@@ -1,0 +1,44 @@
+.form {
+    background: white;
+    border: 1px solid $border;
+    border-radius: $radius;
+    display: flex;
+    flex-direction: column;
+    gap: $m-size;
+    max-width: 60rem;
+    padding: $l-size;
+}
+
+.form__field {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.form__label {
+    color: $grey;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    em {
+        font-weight: 400;
+    }
+}
+
+.form__row {
+    display: flex;
+    flex-direction: column;
+    gap: $m-size;
+    @media (min-width: $desktop-breakpoint) {
+        flex-direction: row;
+    }
+}
+
+.form__error {
+    background: rgba($red, 0.08);
+    border-left: 4px solid $red;
+    border-radius: $radius;
+    color: $red;
+    margin: 0;
+    padding: $s-size $m-size;
+}

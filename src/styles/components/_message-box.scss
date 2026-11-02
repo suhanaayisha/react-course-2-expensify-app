@@ -1,0 +1,21 @@
+.message-box {
+    background: white;
+    border: 1px solid $border;
+    border-radius: $radius;
+    margin: $l-size auto;
+    max-width: 60rem;
+    padding: $l-size;
+    text-align: center;
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.message-box--left {
+    margin-top: 0;
+    max-width: none;
+    text-align: left;
+    h3:first-child {
+        margin-top: 0;
+    }
+}

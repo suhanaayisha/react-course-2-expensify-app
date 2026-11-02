@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { removeExpense } from '../actions/expenses';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
@@ -14,16 +15,34 @@ export class EditExpensePage extends React.Component {
       this.props.history.push('/');
     }
    render() {
+      // Expenses only live in memory, so this happens after a page refresh
+      if (!this.props.expense) {
+         return (
+            <div className="content-container">
+               <div className="message-box">
+                  <h2>Expense not found</h2>
+                  <p>It may have been removed, or the page was refreshed.</p>
+                  <Link className="button" to="/">Back to dashboard</Link>
+               </div>
+            </div>
+         );
+      }
       return (
          <div>
-            <ExpenseForm
-              expense={this.props.expense}
-              onSubmit={this.onSubmit}
-            />
-           <button onClick={this.onRemove}>
-              Remove
-           </button>
-     
+            <div className="page-header">
+               <div className="content-container">
+                  <h1 className="page-header__title">Edit Expense</h1>
+               </div>
+            </div>
+            <div className="content-container">
+               <ExpenseForm
+                 expense={this.props.expense}
+                 onSubmit={this.onSubmit}
+               />
+               <button className="button button--secondary" onClick={this.onRemove}>
+                  Remove Expense
+               </button>
+            </div>
          </div>
         );
    }
