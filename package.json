@@ -5,6 +5,8 @@
   "author": "Suhana Ayisha",
   "license": "MIT",
   "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm run dev:api\" \"webpack-dev-server\"",
+    "dev:api": "cd server && unset npm_config_prefix && . \"$NVM_DIR/nvm.sh\" --no-use && nvm exec \"$(cat .nvmrc)\" node --watch index.js",
     "serve": "live-server public",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
@@ -13,13 +15,14 @@
   },
   "dependencies": {
     "babel-cli": "6.24.1",
-    "babel-polyfill": "6.26.0",
     "babel-core": "6.25.0",
     "babel-loader": "7.1.1",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-polyfill": "6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "concurrently": "8.2.2",
     "css-loader": "0.28.4",
     "dotenv": "^8.1.0",
     "enzyme": "3.11.0",
@@ -29,7 +32,6 @@
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.8.0",
     "moment": "2.18.1",
-    "sass": "1.32.13",
     "normalize.css": "7.0.0",
     "raf": "^3.4.1",
     "react": "16.14.0",
@@ -41,13 +43,15 @@
     "react-router-dom": "4.2.2",
     "react-test-renderer": "16.14.0",
     "redux": "3.7.2",
+    "redux-thunk": "2.3.0",
+    "sass": "1.32.13",
     "sass-loader": "7.3.1",
     "style-loader": "0.18.2",
     "uuid": "3.1.0",
     "validator": "8.0.0",
     "webpack": "4.11.1",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.1.4"
   },
   "resolutions": {
     "cheerio": "1.0.0-rc.12"

@@ -63,7 +63,11 @@ module.exports = (env) => {
 		devServer: {
 			contentBase: path.join(__dirname, 'public'),
 			historyApiFallback: true,
-			publicPath: '/dist/'
+			publicPath: '/dist/',
+			// Send API calls to the Express server in /server
+			proxy: {
+				'/api': 'http://localhost:3000'
+			}
 		}
 	};
 };

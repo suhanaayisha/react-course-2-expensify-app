@@ -1,5 +1,6 @@
 {
-    "setupFiles":[
+    "setupFiles": [
+        "babel-polyfill",
         "raf/polyfill",
         "<rootDir>/src/tests/setupTests.js"
     ],

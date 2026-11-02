@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
-export const AddExpensePage = ({ addExpense, history }) => {
-   const onSubmit = (expense) => {
-      addExpense(expense);
-      history.push('/');
+export const AddExpensePage = ({ startAddExpense, history }) => {
+   const [saving, setSaving] = useState(false);
+   const [error, setError] = useState('');
+
+   const onSubmit = async (expense) => {
+      if (saving) {
+         return;
+      }
+      setSaving(true);
+      setError('');
+      try {
+         await startAddExpense(expense);
+         history.push('/');
+      } catch (e) {
+         setError(`Couldn't save the expense: ${e.message}`);
+         setSaving(false);
+      }
    };
    return (
       <div>
@@ -16,6 +29,7 @@ export const AddExpensePage = ({ addExpense, history }) => {
             </div>
          </div>
          <div className="content-container">
+            {error && <p className="form__error page-error">{error}</p>}
             <ExpenseForm
             onSubmit={onSubmit}
             />
@@ -26,7 +40,7 @@ export const AddExpensePage = ({ addExpense, history }) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-   addExpense: (expense) => dispatch(addExpense(expense))
+   startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
 
 

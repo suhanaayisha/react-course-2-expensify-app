@@ -13,6 +13,9 @@
     &:hover {
         background: $dark-blue-hover;
     }
+    &:disabled {
+        opacity: 0.6;
+    }
     &:focus-visible {
         outline: 3px solid rgba($blue, 0.35);
         outline-offset: 2px;
