@@ -1,1 +1,6 @@
 node_modules/
+
+# Environment files hold secrets (e.g. the MongoDB connection string)
+.env
+.env.*
+!.env.example
